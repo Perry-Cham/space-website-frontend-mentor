@@ -1,12 +1,17 @@
+"use client"
+import { usePathname } from "next/navigation";
 const destinations = [
-  { position: "00", name: "Home" },
-  { position: "01", name: "Destination" },
-  { position: "02", name: "Crew" },
-  { position: "03", name: "Technology" },
+  { position: "00", name: "Home", url:"/" },
+  { position: "01", name: "Destination", url:"/destination" },
+  { position: "02", name: "Crew", url: "/crew" },
+  { position: "03", name: "Technology", url: "/technology" },
 ];
 const Navbar = () => {
+ 
+
+
   return (
-    <header className="flex w-full justify-between px-4 py-8">
+    <header className="flex w-full justify-between px-4 py-8 fixed top-0 left-0">
       <div>
         <img src="/shared/logo.svg" className="" />
       </div>
@@ -22,16 +27,18 @@ const Navbar = () => {
   );
 };
 
+
 const DesktopNavigation = () => {
+   const pathname = usePathname();
   return (
     <nav className="flex justify-end px-8 bg-[rgba(255,255,255,0.05)] w-full h-[10vh]">
       <ul className="flex justify-center items-center space-x-16">
         {destinations.map((dest) => (
-          <li className="text-lg h-full  py-4 flex justify-center items-center">
-            <div className="h-fit">
-              <span className="font-bold inline-block mr-2">{dest.position}</span>
+          <li key={dest.name} className={`text-lg h-full  py-4 flex justify-center items-center ${(usePathname() === ("/" + dest.name)) && "border-b-white border-2"}`}>
+            <a href={dest.url} className="h-fit cursor-pointer">
+              <span  className="font-bold inline-block mr-2 ">{dest.position}</span>
               <span>{dest.name}</span>
-            </div>
+            </a>
           </li>
         ))}
       </ul>
@@ -51,5 +58,8 @@ const MobileNavigation = () => {
     </nav>
   );
 };
+
+
+
 
 export default Navbar;

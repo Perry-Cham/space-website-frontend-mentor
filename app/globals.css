@@ -18,7 +18,12 @@
     --foreground: #ededed;
   }
 }
-
+.heading{
+@apply text-2xl font-bold uppercase mb-40
+}
+.crew-btn{
+  @apply w-4 h-4 rounded-full bg-white cursor-pointer
+}
 body {
   background: var(--background);
   color: var(--foreground);

@@ -26,7 +26,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body>
         <main>
-        {/*  <Navbar /> */}
+          {/* A height allowance that takes the navbar into account so that it doesn't display over the other pages*/}
+         <Navbar />
           {children}
         </main>
       </body>
