@@ -63,11 +63,11 @@ export default function () {
         <div className="grid grid-cols-[2fr_1fr]">
 
             <div className="items-center">
-                {data.map(d => (<img key={d.name} className={`${destination == d.name.toLowerCase() ? "block" : "hidden"}`} src={d.images.webp}/>))}
+                {data.map(d => (<img key={d.name} className={`${destination.toLowerCase() == d.name.toLowerCase() ? "block" : "hidden"}`} src={d.images.webp}/>))}
             </div>
 
             <div className="flex flex-col items-center">
-                <Navigation changeDestination={foo} />
+                <Navigation currentDest={destination} changeDestination={foo} />
                 {data.map((dest) => (<article key={dest.name} className={`${dest.name.toLowerCase() == destination.toLowerCase() ? "block" : "hidden"}`}>
                     <h2 className="text-8xl uppercase my-8">{dest.name}</h2>
                     <p>{dest.description}</p>
@@ -91,10 +91,10 @@ export default function () {
 
 
 
-function Navigation({changeDestination}:{changeDestination: (arg: string) => void}) {
+function Navigation({changeDestination, currentDest}:{changeDestination: (arg: string) => void, currentDest: string}) {
     return <nav className="w-full py-4">
         <ul className="flex space-x-4 items-center uppercase">
-            {data.map(dest => (<li key={dest.name} className="cursor-pointer" onClick={() => {
+            {data.map(dest => (<li key={dest.name} className={`cursor-pointer ${(currentDest.toLowerCase() === dest.name.toLowerCase()) && "border-white border-b-2"}`} onClick={() => {
                 console.log(changeDestination);
                 changeDestination(dest.name)
             }}>

@@ -34,7 +34,7 @@ const DesktopNavigation = () => {
     <nav className="flex justify-end px-8 bg-[rgba(255,255,255,0.05)] w-full h-[10vh]">
       <ul className="flex justify-center items-center space-x-16">
         {destinations.map((dest) => (
-          <li key={dest.name} className={`text-lg h-full  py-4 flex justify-center items-center ${(usePathname() === ("/" + dest.name)) && "border-b-white border-2"}`}>
+          <li key={dest.name} className={`text-lg h-full  py-4 flex justify-center items-center ${(usePathname() === dest.url) && "border-white border-b-2"}`}>
             <a href={dest.url} className="h-fit cursor-pointer">
               <span  className="font-bold inline-block mr-2 ">{dest.position}</span>
               <span>{dest.name}</span>

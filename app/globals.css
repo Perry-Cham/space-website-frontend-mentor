@@ -18,11 +18,20 @@
     --foreground: #ededed;
   }
 }
+.flex-center-col{
+  @apply flex flex-col justify-center items-center
+}
+
 .heading{
 @apply text-2xl font-bold uppercase mb-40
 }
 .crew-btn{
-  @apply w-4 h-4 rounded-full bg-white cursor-pointer
+  @apply w-4 h-4 rounded-full cursor-pointer
+}
+
+/* TECHNOLOGY NAVIGATION */
+.nav-btn{
+  @apply w-[100px] h-[100px] border-white border-2 rounded-full flex justify-center items-center cursor-pointer
 }
 body {
   background: var(--background);

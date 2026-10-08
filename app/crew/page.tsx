@@ -62,10 +62,10 @@ export default function () {
 
                 <nav>
                     <ul className="w-3xs flex justify-center items-center space-x-6 ">
-                        <li onClick={() => setMember("Douglas Hurley")} className="crew-btn"></li>
-                        <li onClick={() => setMember("Mark Shuttleworth")} className="crew-btn"></li>
-                        <li onClick={() => setMember("Victor Glover")} className="crew-btn"></li>
-                        <li onClick={() => setMember("Anousheh Ansari")} className="crew-btn"></li>
+                        <li onClick={() => setMember("Douglas Hurley")} className={`crew-btn ${member !== "Douglas Hurley" ? "bg-gray-700" : " bg-white"}`}></li>
+                        <li onClick={() => setMember("Mark Shuttleworth")} className={`crew-btn ${member !== "Mark Shuttleworth" ? "bg-gray-700" : " bg-white"}`}></li>
+                        <li onClick={() => setMember("Victor Glover")} className={`crew-btn ${member !== "Victor Glover" ? "bg-gray-700" : " bg-white"}`}></li>
+                        <li onClick={() => setMember("Anousheh Ansari")} className={`crew-btn ${member !== "Anousheh Ansari" ? "bg-gray-700" : " bg-white"}`}></li>
                     </ul>
                 </nav>
             </div>

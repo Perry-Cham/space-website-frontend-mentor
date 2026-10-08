@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Navbar from "./components/navbar";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -16,7 +17,7 @@ export default function Home() {
         </p>
       </div>
       
-      <div className="justify-items-center"><button className="w-[12rem] h-[12rem] rounded-full block bg-white text-black font-bold text-xl">Explore</button></div>
+      <div className="justify-items-center"><Link href="/destination" className="w-[12rem] h-[12rem] rounded-full block bg-white text-black font-bold text-xl flex-center-col">Explore</Link></div>
     </section>
         </section>
   
