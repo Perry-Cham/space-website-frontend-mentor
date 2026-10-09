@@ -50,9 +50,9 @@ let data: CrewMember[] = [
 
 export default function () {
     const [member, setMember] = useState("Douglas Hurley")
-    return <section className="p-[15vh] bg-[url('/crew/background-crew-desktop.jpg')] bg-cover min-h-screen">
+    return <section className="max-sm:pt-[15vh] max-sm:p-12 md:p-[15vh] bg-[url('/crew/background-crew-desktop.jpg')] bg-cover min-h-screen">
         <h1 className="heading"><span>02</span> Meet The Crew</h1>
-        <div className="grid grid-cols-[1fr_2fr]">
+        <div className="max-sm:flex max-sm:flex-col justify-center items-center md:grid grid-cols-[1fr_2fr]">
             <div className="flex justify-between flex-col">
                 {data.map(d => (<article className={`${member.toLowerCase() == d.name.toLowerCase() ? "block" : "hidden"}`}>
                     <h3 className="text-xl uppercase">{d.role}</h3>
@@ -60,7 +60,7 @@ export default function () {
                     <p className="">{d.bio}</p>
                 </article>))}
 
-                <nav>
+                <nav className="my-20">
                     <ul className="w-3xs flex justify-center items-center space-x-6 ">
                         <li onClick={() => setMember("Douglas Hurley")} className={`crew-btn ${member !== "Douglas Hurley" ? "bg-gray-700" : " bg-white"}`}></li>
                         <li onClick={() => setMember("Mark Shuttleworth")} className={`crew-btn ${member !== "Mark Shuttleworth" ? "bg-gray-700" : " bg-white"}`}></li>
@@ -72,7 +72,7 @@ export default function () {
 
             <div>
                 <div className="">
-                    {data.map(d => (<img key={d.name} className={`h-[550px] ml-20 ${member.toLowerCase() == d.name.toLowerCase() ? "block" : "hidden"}`} src={d.images.webp.trim()} />))}
+                    {data.map(d => (<img key={d.name} className={`h-[500px] md:h-[550px] md:ml-20 ${member.toLowerCase() == d.name.toLowerCase() ? "block" : "hidden"}`} src={d.images.png.trim()} />))}
                 </div>
             </div>
 

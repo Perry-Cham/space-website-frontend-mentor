@@ -58,9 +58,9 @@ export default function () {
         setDestination(dest);
     }
 
-    return <section className="p-[15vh] bg-[url('/destination/background-destination-desktop.jpg')] min-h-screen bg-cover">
+    return <section className="max-sm:pt-[15vh] max-sm:px-4  md:p-[15vh] bg-[url('/destination/background-destination-desktop.jpg')] min-h-screen bg-cover">
         <h1 className="text-2xl font-bold uppercase mb-40">01. Pick your destination</h1>
-        <div className="grid grid-cols-[2fr_1fr]">
+        <div className="md:grid grid-cols-[2fr_1fr]">
 
             <div className="items-center">
                 {data.map(d => (<img key={d.name} className={`${destination.toLowerCase() == d.name.toLowerCase() ? "block" : "hidden"}`} src={d.images.webp}/>))}
@@ -69,18 +69,18 @@ export default function () {
             <div className="flex flex-col items-center">
                 <Navigation currentDest={destination} changeDestination={foo} />
                 {data.map((dest) => (<article key={dest.name} className={`${dest.name.toLowerCase() == destination.toLowerCase() ? "block" : "hidden"}`}>
-                    <h2 className="text-8xl uppercase my-8">{dest.name}</h2>
-                    <p>{dest.description}</p>
+                    <h2 className="text-6xl md:text-8xl uppercase my-8 max-sm:text-center">{dest.name}</h2>
+                    <p className="text-center">{dest.description}</p>
                     <hr className="my-6"></hr>
-                    <div className="flex space-x-9 uppercase">
+                    <div className="flex flex-col max-sm:items-center max-sm:space-y-9 md:flex-row md:space-x-9 uppercase">
                         <div>
-                            <p>Avg. Distance</p>
-                            <p className="text-3xl mt-4">{dest.distance}</p>
+                            <p className="text-center">Avg. Distance</p>
+                            <p className="text-3xl mt-4 text-center">{dest.distance}</p>
                         </div>
 
                         <div>
-                            <p>Est. Travel Time</p>
-                            <p className="text-3xl mt-4">{dest.travel}</p>
+                            <p className="text-center">Est. Travel Time</p>
+                            <p className="text-3xl mt-4 text-center">{dest.travel}</p>
                         </div>
                     </div>
                 </article>))}
@@ -93,7 +93,7 @@ export default function () {
 
 function Navigation({changeDestination, currentDest}:{changeDestination: (arg: string) => void, currentDest: string}) {
     return <nav className="w-full py-4">
-        <ul className="flex space-x-4 items-center uppercase">
+        <ul className="flex max-sm:justify-center space-x-4 items-center uppercase">
             {data.map(dest => (<li key={dest.name} className={`cursor-pointer ${(currentDest.toLowerCase() === dest.name.toLowerCase()) && "border-white border-b-2"}`} onClick={() => {
                 console.log(changeDestination);
                 changeDestination(dest.name)
