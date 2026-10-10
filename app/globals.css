@@ -8,8 +8,11 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-bellefair: var(--bellefair);
+  --font-barlow: var(--barlow);
+  --font-barlowC: var(--barlowCondensed);
   --font-mono: var(--font-geist-mono);
+  --color-custBlue300:rgb(208, 214, 249);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,16 +26,19 @@
 }
 
 .heading{
-@apply text-2xl font-bold uppercase mb-40
+@apply text-2xl font-bold uppercase mb-40 font-barlowC tracking-[0.15em] text-center
 }
 .crew-btn{
   @apply w-4 h-4 rounded-full cursor-pointer
 }
-
+.regular-text{
+   @apply text-custBlue300 leading-[1.8em]
+}
 /* TECHNOLOGY NAVIGATION */
 .nav-btn{
-  @apply w-[100px] h-[100px] border-white border-2 rounded-full flex justify-center items-center cursor-pointer
+  @apply  w-[50px] h-[50px] md:w-[100px] md:h-[100px] border-white border-2 rounded-full flex justify-center items-center cursor-pointer
 }
+
 body {
   background: var(--background);
   color: var(--foreground);

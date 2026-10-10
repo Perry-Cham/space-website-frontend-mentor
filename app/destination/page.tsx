@@ -58,30 +58,23 @@ export default function () {
         setDestination(dest);
     }
 
-    return <section className="max-sm:pt-[15vh] max-sm:px-4  md:p-[15vh] bg-[url('/destination/background-destination-desktop.jpg')] min-h-screen bg-cover">
-        <h1 className="text-2xl font-bold uppercase mb-40">01. Pick your destination</h1>
+    return <section className="max-sm:pt-[15vh] max-sm:px-4 max-sm:pb-6  md:p-[15vh] bg-[url('/destination/background-destination-desktop.jpg')] min-h-screen bg-cover">
+        <h1 className="heading"><span className="pr-4 text-[rgb(255,255,255,0.5)]">01.</span>Pick your destination</h1>
         <div className="md:grid grid-cols-[2fr_1fr]">
 
             <div className="items-center">
-                {data.map(d => (<img key={d.name} className={`${destination.toLowerCase() == d.name.toLowerCase() ? "block" : "hidden"}`} src={d.images.webp}/>))}
+                {data.map(d => (<img key={d.name} className={`${destination.toLowerCase() == d.name.toLowerCase() ? "block" : "hidden"}`} src={d.images.webp} />))}
             </div>
 
             <div className="flex flex-col items-center">
                 <Navigation currentDest={destination} changeDestination={foo} />
                 {data.map((dest) => (<article key={dest.name} className={`${dest.name.toLowerCase() == destination.toLowerCase() ? "block" : "hidden"}`}>
-                    <h2 className="text-6xl md:text-8xl uppercase my-8 max-sm:text-center">{dest.name}</h2>
-                    <p className="text-center">{dest.description}</p>
+                    <h2 className="text-[56px] md:text-8xl uppercase my-8 max-sm:text-center font-bellefair">{dest.name}</h2>
+                    <p className="max-sm:text-center regular-text">{dest.description}</p>
                     <hr className="my-6"></hr>
                     <div className="flex flex-col max-sm:items-center max-sm:space-y-9 md:flex-row md:space-x-9 uppercase">
-                        <div>
-                            <p className="text-center">Avg. Distance</p>
-                            <p className="text-3xl mt-4 text-center">{dest.distance}</p>
-                        </div>
-
-                        <div>
-                            <p className="text-center">Est. Travel Time</p>
-                            <p className="text-3xl mt-4 text-center">{dest.travel}</p>
-                        </div>
+                        <SmallTextDisplay mainText="avg. distance" subText={dest.distance} />
+                        <SmallTextDisplay mainText="est. travel time" subText={dest.travel} />
                     </div>
                 </article>))}
             </div>
@@ -89,12 +82,18 @@ export default function () {
     </section>
 }
 
+function SmallTextDisplay({ mainText, subText }: { mainText: string, subText: string }) {
+    return <div>
+        <p className="max-sm:text-center text-[0.75rem] text-custBlue300">{mainText}</p>
+        <p className="text-3xl mt-4 max-sm:text-center text-[1.75rem]">{subText}</p>
+    </div>
+}
 
 
-function Navigation({changeDestination, currentDest}:{changeDestination: (arg: string) => void, currentDest: string}) {
+function Navigation({ changeDestination, currentDest }: { changeDestination: (arg: string) => void, currentDest: string }) {
     return <nav className="w-full py-4">
         <ul className="flex max-sm:justify-center space-x-4 items-center uppercase">
-            {data.map(dest => (<li key={dest.name} className={`cursor-pointer ${(currentDest.toLowerCase() === dest.name.toLowerCase()) && "border-white border-b-2"}`} onClick={() => {
+            {data.map(dest => (<li key={dest.name} className={`py-4 cursor-pointer transition -all ${(currentDest.toLowerCase() === dest.name.toLowerCase()) && "border-white border-b-3 font-bold"}`} onClick={() => {
                 console.log(changeDestination);
                 changeDestination(dest.name)
             }}>

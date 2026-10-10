@@ -1,6 +1,8 @@
 "use client"
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import {RiMenuLine} from "@remixicon/react"
+import { RiCloseLine } from "@remixicon/react";
 import { useState } from "react";
 const destinations = [
   { position: "00", name: "Home", url:"/" },
@@ -13,7 +15,7 @@ const Navbar = () => {
 
 
   return (
-    <header className="flex w-full justify-between px-4 py-8 fixed top-0 left-0">
+    <header className="flex w-full justify-between px-4 py-8 fixed top-0 left-0 font-barlowC">
       <div>
         <img src="/shared/logo.svg" className="" />
       </div>
@@ -26,7 +28,7 @@ const Navbar = () => {
         <MobileNavigation open={mobileNavOpen} setOpen={setMobileNavOpen}/>
       </div>
 
-        <button onClick={() => setMobileNavOpen(true)} className="md:hidden">Click</button>
+        <RiMenuLine onClick={() => setMobileNavOpen(true)} className="md:hidden" />
     </header>
   );
 };
@@ -53,7 +55,7 @@ const DesktopNavigation = () => {
 const MobileNavigation = ({open, setOpen}:{open:boolean, setOpen: (val: boolean) => void}) => {
   return (
     <nav className={`absolute top-0 ${open ? "right-0" : "-right-full"} transition-all duration-150 py-12 px-8 min-h-screen backdrop-blur-md bg-[rgba(255,255,255,0.05)] w-[60vw] h-[10vh] flex flex-col items-end space-y-24`}>
-      <button onClick={() => setOpen(false)}>X</button>
+      <RiCloseLine onClick={() => setOpen(false)} />
       <ul className="flex flex-col space-y-9 w-full">
        {destinations.map(d => (<li className=""><Link className="uppercase" href={d.url}><span className="font-bold mr-4">{d.position}</span>{d.name}</Link></li>))}
       </ul>

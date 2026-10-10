@@ -29,12 +29,17 @@ const data = [
 
 export default function () {
     const [stage, setStage] = useState("Launch Vehicle")
-    return <section className="py-[15vh] pl-[15vh] min-h-screen bg-cover bg-[url('/technology/background-technology-desktop.jpg')]">
-        <h1 className="heading">03. Space Launch 101</h1>
+    return <section className="py-[15vh] md:pl-[15vh] min-h-screen bg-cover bg-[url('/technology/background-technology-desktop.jpg')]">
+        <h1 className="heading max-sm:text-center">03. Space Launch 101</h1>
 
-        <div className="grid grid-cols-[1fr_3fr_4fr] gap-8 min-h-[55vh]">
-            <nav className="flex flex-col justify-center">
-                <ul className="flex flex-col justify-center space-y-4">
+        <div className="flex flex-col md:grid md:grid-cols-[1fr_3fr_4fr] gap-8 min-h-[55vh] md:[grid-template-areas:'nav_main_img']">
+
+            <div className="[grid-area:img]">
+                <img className="max-sm:w-full md:h-full" src={data.find(i => i.name.toLowerCase() === stage.toLowerCase())?.images.landscape.trim()} />
+            </div>
+
+            <nav className="flex flex-col justify-center [grid-area:nav]">
+                <ul className="flex md:flex-col justify-center md:space-y-4 space-x-4">
                     <li onClick={() => setStage("launch vehicle")} className={`nav-btn ${stage.toLowerCase() == "launch vehicle" && "bg-white text-black font-bold"}`}>1</li>
                     <li onClick={() => setStage("spaceport")} className={`nav-btn ${stage.toLowerCase() == "spaceport" && "bg-white text-black font-bold"}`}>2</li>
                     <li onClick={() => setStage("space capsule")} className={`nav-btn ${stage.toLowerCase() == "space capsule" && "bg-white text-black font-bold"}`}>3</li>
@@ -43,20 +48,18 @@ export default function () {
 
 
 
-            <div className="flex flex-col justify-center">
-                <h2 className="text-3xl uppercase">The Terminology</h2>
+            <div className="flex flex-col justify-center [[grid-area:main] max-sm:text-center">
+                <h2 className="text-xl md:text-3xl uppercase">The Terminology</h2>
                 {data.map(d => (<article className={`${stage.toLowerCase() === d.name.toLowerCase() ? "grid" : "hidden"}`}>
                     <div >
-                        <h3 className="text-4xl uppercase my-4">{d.name}</h3>
-                        <p>{d.description}</p>
+                        <h3 className="text-2xl md:text-4xl uppercase my-4">{d.name}</h3>
+                        <p className="px-8">{d.description}</p>
                     </div>
                 </article>))}
             </div>
 
 
-            <div>
-                <img className="h-full" src={data.find(i => i.name.toLowerCase() === stage.toLowerCase())?.images.landscape.trim()} />
-            </div>
+
         </div>
     </section>
 }
