@@ -23,7 +23,7 @@ export default function Home() {
       </div>
       
       <div 
-    className="justify-items-center"><Link href="/destination" className={`w-40 h-40 md:w-80 md:h-80 rounded-full block bg-white text-black font-bold text-xl flex-center-col`}>Explore</Link></div>
+    className="justify-items-center font-bellefair"><Link href="/destination" className={`w-40 h-40 md:w-80 md:h-80 rounded-full block bg-white text-black font-bold text-xl flex-center-col`}>Explore</Link></div>
     </section>
         </section>
   

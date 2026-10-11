@@ -1,5 +1,6 @@
 "use client"
 import { Dispatch, SetStateAction, useState } from "react"
+import Header from "../components/header";
 
 const data = [
     {
@@ -59,7 +60,7 @@ export default function () {
     }
 
     return <section className="max-sm:pt-[15vh] max-sm:px-4 max-sm:pb-6  md:p-[15vh] bg-[url('/destination/background-destination-desktop.jpg')] min-h-screen bg-cover">
-        <h1 className="heading"><span className="pr-4 text-[rgb(255,255,255,0.5)]">01.</span>Pick your destination</h1>
+        <Header number="01" text="Pick Your Destination" />
         <div className="md:grid grid-cols-[2fr_1fr]">
 
             <div className="items-center">

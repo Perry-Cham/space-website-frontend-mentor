@@ -1,5 +1,6 @@
 "use client"
 import { useState } from "react"
+import Header from "../components/header"
 
 interface CrewMember {
     id?: number,
@@ -50,18 +51,22 @@ let data: CrewMember[] = [
 
 export default function () {
     const [member, setMember] = useState("Douglas Hurley")
-    return <section className="max-sm:pt-[15vh] max-sm:p-12 md:p-[15vh] bg-[url('/crew/background-crew-desktop.jpg')] bg-cover min-h-screen">
-        <h1 className="heading"><span>02</span> Meet The Crew</h1>
-        <div className="max-sm:flex max-sm:flex-col justify-center items-center md:grid grid-cols-[1fr_2fr]">
+    return <section className="max-sm:pt-[15vh] max-sm:p-6 md:p-[15vh] bg-[url('/crew/background-crew-desktop.jpg')] bg-cover min-h-screen">
+        <Header number="02" text="meet the crew"/>
+    
+        <div className="max-sm:flex max-sm:flex-col justify-center items-center md:grid grid-cols-[1fr_2fr] pt-10 text-center">
             <div className="flex justify-between flex-col">
                 {data.map(d => (<article className={`${member.toLowerCase() == d.name.toLowerCase() ? "block" : "hidden"}`}>
-                    <h3 className="text-xl uppercase">{d.role}</h3>
-                    <h4 className="text-4xl uppercase my-4">{d.name}</h4>
-                    <p className="">{d.bio}</p>
+
+                    <div className="font-bellefair uppercase mb-6">
+                        <h3 className="text-[18px] text-offWhite mb-2">{d.role}</h3>
+                        <h4 className="max-sm:text-xl text-4xl">{d.name}</h4>
+                    </div>
+                    <p className="text-custBlue300 leading-[1.8em]">{d.bio}</p>
                 </article>))}
 
                 <nav className="my-20">
-                    <ul className="w-3xs flex justify-center items-center space-x-6 ">
+                    <ul className="flex justify-center items-center space-x-6 w-full">
                         <li onClick={() => setMember("Douglas Hurley")} className={`crew-btn ${member !== "Douglas Hurley" ? "bg-gray-700" : " bg-white"}`}></li>
                         <li onClick={() => setMember("Mark Shuttleworth")} className={`crew-btn ${member !== "Mark Shuttleworth" ? "bg-gray-700" : " bg-white"}`}></li>
                         <li onClick={() => setMember("Victor Glover")} className={`crew-btn ${member !== "Victor Glover" ? "bg-gray-700" : " bg-white"}`}></li>
@@ -70,10 +75,8 @@ export default function () {
                 </nav>
             </div>
 
-            <div>
-                <div className="">
-                    {data.map(d => (<img key={d.name} className={`h-[500px] md:h-[550px] md:ml-20 ${member.toLowerCase() == d.name.toLowerCase() ? "block" : "hidden"}`} src={d.images.png.trim()} />))}
-                </div>
+            <div className="w-full justify-items-center">
+                {data.map(d => (<img key={d.name} className={`h-[340px] md:h-[550px] md:ml-20 ${member.toLowerCase() == d.name.toLowerCase() ? "block" : "hidden"}`} src={d.images.png.trim()} />))}
             </div>
 
         </div>
