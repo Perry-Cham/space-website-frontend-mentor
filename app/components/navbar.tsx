@@ -1,5 +1,9 @@
 "use client"
 import { usePathname } from "next/navigation";
+import Link from "next/link";
+import {RiMenuLine} from "@remixicon/react"
+import { RiCloseLine } from "@remixicon/react";
+import { useState } from "react";
 const destinations = [
   { position: "00", name: "Home", url:"/" },
   { position: "01", name: "Destination", url:"/destination" },
@@ -7,11 +11,11 @@ const destinations = [
   { position: "03", name: "Technology", url: "/technology" },
 ];
 const Navbar = () => {
- 
+ const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
 
   return (
-    <header className="flex w-full justify-between px-4 py-8 fixed top-0 left-0">
+    <header className="flex w-full justify-between px-4 py-8 fixed top-0 left-0 font-barlowC">
       <div>
         <img src="/shared/logo.svg" className="" />
       </div>
@@ -21,8 +25,10 @@ const Navbar = () => {
       </div>
 
       <div className="md:hidden">
-        <MobileNavigation />
+        <MobileNavigation open={mobileNavOpen} setOpen={setMobileNavOpen}/>
       </div>
+
+        <RiMenuLine onClick={() => setMobileNavOpen(true)} className="md:hidden" />
     </header>
   );
 };
@@ -34,11 +40,11 @@ const DesktopNavigation = () => {
     <nav className="flex justify-end px-8 bg-[rgba(255,255,255,0.05)] w-full h-[10vh]">
       <ul className="flex justify-center items-center space-x-16">
         {destinations.map((dest) => (
-          <li key={dest.name} className={`text-lg h-full  py-4 flex justify-center items-center ${(usePathname() === dest.url) && "border-white border-b-2"}`}>
-            <a href={dest.url} className="h-fit cursor-pointer">
+          <li key={dest.name} className={`text-lg h-full  py-4 flex justify-center items-center transition-all duration-175 delay-75 ${(usePathname() === dest.url) && "border-white border-b-2"}`}>
+            <Link href={dest.url} className="h-fit cursor-pointer">
               <span  className="font-bold inline-block mr-2 ">{dest.position}</span>
               <span>{dest.name}</span>
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
@@ -46,14 +52,12 @@ const DesktopNavigation = () => {
   );
 };
 
-const MobileNavigation = () => {
+const MobileNavigation = ({open, setOpen}:{open:boolean, setOpen: (val: boolean) => void}) => {
   return (
-    <nav>
-      <ul>
-        <li>Home</li>
-        <li>Destinations</li>
-        <li>Crew</li>
-        <li>Vehicles</li>
+    <nav className={`absolute top-0 ${open ? "right-0" : "-right-full"} transition-all duration-150 py-12 px-8 min-h-screen backdrop-blur-md bg-[rgba(255,255,255,0.05)] w-[60vw] h-[10vh] flex flex-col items-end space-y-24`}>
+      <RiCloseLine onClick={() => setOpen(false)} />
+      <ul className="flex flex-col space-y-9 w-full">
+       {destinations.map(d => (<li className=""><Link className="uppercase" href={d.url}><span className="font-bold mr-4">{d.position}</span>{d.name}</Link></li>))}
       </ul>
     </nav>
   );
